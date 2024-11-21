@@ -3,8 +3,11 @@ import java.rmi.Naming;
 public class CalculatorClient {
     public static void main(String[] args) {
         try {
-            String host = args.length > 0 ? args[0] : "localhost";
-            CalculatorService calculatorService = (CalculatorService) Naming.lookup("rmi://" + host + "/CalculatorService");
+            // Obtém o hostname do servidor (no Docker Compose será 'server')
+            String host = args.length > 0 ? args[0] : "server";
+
+            // Conecta ao serviço na porta 2000
+            CalculatorService calculatorService = (CalculatorService) Naming.lookup("rmi://" + host + ":2000/CalculatorService");
 
             double a = 10.0;
             double b = 5.0;

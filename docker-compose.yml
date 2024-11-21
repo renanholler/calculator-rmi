@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "2000:2000" # Mapeando a porta do registro RMI para o host
+    command: ["java", "-cp", "/app/bin", "CalculatorServer"]
+
+  client1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+    command: ["java", "-cp", "/app/bin", "CalculatorClient", "server"]
+
+  client2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+    command: ["java", "-cp", "/app/bin", "CalculatorClient", "server"]
+
+  client3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+    command: ["java", "-cp", "/app/bin", "CalculatorClient", "server"]
+
+  client4:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+    command: ["java", "-cp", "/app/bin", "CalculatorClient", "server"]
+
+  client5:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+    command: ["java", "-cp", "/app/bin", "CalculatorClient", "server"]
